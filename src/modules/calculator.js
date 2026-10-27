@@ -7,8 +7,6 @@ const calculator = () => {
             input.value = input.value.replace(/\D/g, '');
         })
     })
-
-    console.log(calcInputs);
 }
 
 export default calculator;
