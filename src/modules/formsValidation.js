@@ -18,7 +18,7 @@ const formValidation = () => {
                 input.value = input.value.replace(regExpErrorSpaces, ' ');
                 input.value = input.value.replace(regExpErrorStartEnd, '');
 
-                if (event.target.matches('input[type=text]')) {
+                if (event.target.matches('input[type=text]') && !event.target.value === null) {
 
                     let words = event.target.value.split(' ');
                     words = words.map((word) => {
