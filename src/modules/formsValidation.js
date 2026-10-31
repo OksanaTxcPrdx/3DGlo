@@ -18,15 +18,16 @@ const formValidation = () => {
                 input.value = input.value.replace(regExpErrorSpaces, ' ');
                 input.value = input.value.replace(regExpErrorStartEnd, '');
 
-                if (event.target.matches('input[type=text]') && !event.target.value === null) {
-
-                    let words = event.target.value.split(' ');
-                    words = words.map((word) => {
-                        let firstL = word[0].toUpperCase();
-                        let rest = word.slice(1).toLowerCase();
-                        return `${firstL}${rest}`;
-                    })
-                    event.target.value = words.join(' ');
+                if (event.target.matches('input[type=text]')) {
+                    if (event.target.value !== null) {
+                        let words = event.target.value.split(' ');
+                        words = words.map((word) => {
+                            let firstL = word[0].toUpperCase();
+                            let rest = word.slice(1).toLowerCase();
+                            return `${firstL}${rest}`;
+                        })
+                        event.target.value = words.join(' ');
+                    } else { return }
                 }
             })
         })
