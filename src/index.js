@@ -5,6 +5,7 @@ import calc from './modules/calculator';
 import formValid from './modules/formsValidation';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
+import sliderCarousel from './modules/sliderCarousel';
 
 timer('30 october 2026 15:55:20');
 menu();
@@ -13,3 +14,4 @@ calc();
 formValid();
 tabs();
 slider();
+sliderCarousel();

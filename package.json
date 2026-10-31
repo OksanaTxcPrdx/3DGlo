@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "swiper": "^14.4.0"
+  },
   "devDependencies": {
     "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3",
