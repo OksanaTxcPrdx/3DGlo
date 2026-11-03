@@ -13,5 +13,5 @@ modal();
 calc();
 formValid();
 tabs();
-slider();
+slider('.portfolio-content', '.portfolio-item');
 sliderCarousel();
