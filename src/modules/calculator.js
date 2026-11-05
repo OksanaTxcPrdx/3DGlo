@@ -6,11 +6,35 @@ const calculator = (price = 100) => {
     const calcDay = document.querySelector('.calc-day');
     const total = document.querySelector('#total');
 
-
+    let interval = null;
     calcBlock.addEventListener('input', e => {
         if (e.target.closest('input[type="text"]'))
             e.target.value = e.target.value.replace(/\D/g, '');
     })
+
+    const drawTotal = (totalValue) => {
+
+        if (interval !== null) {
+            clearInterval(interval);
+            interval = null;
+        }
+
+        // let totalValue = Math.ceil(totalValue);
+        let totalText = Math.ceil(total.textContent);
+
+        console.log(totalText);
+        interval = setInterval(() => {
+            if (Math.ceil(total.textContent) == Math.ceil(totalValue)) {
+                clearInterval(interval);
+                total.textContent = totalValue.toFixed(2)
+            } else if (Math.ceil(total.textContent) < Math.ceil(totalValue)) {
+                total.textContent = +total.textContent + 1
+            } else if (+total.textContent > Math.ceil(totalValue)) {
+                total.textContent = +total.textContent - 1
+            }
+        }, 1)
+
+    }
 
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -35,8 +59,8 @@ const calculator = (price = 100) => {
         } else {
             totalValue = 0;
         }
-
-        total.textContent = totalValue;
+        drawTotal(totalValue);
+        // total.textContent = totalValue;
 
     }
 
