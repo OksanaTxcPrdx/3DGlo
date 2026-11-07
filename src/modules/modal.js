@@ -3,10 +3,10 @@ import { animate } from "./helpers";
 const modal = () => {
     const modal = document.querySelector('.popup');
     const popupContent = modal.querySelector('.popup-content');
-    const buttons = document.querySelectorAll('.popup-btn');
+    const serviceBlock = document.getElementById('service-block');
 
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
+    serviceBlock.addEventListener('click', (e) => {
+        if (e.target.closest('.popup-btn')) {
             const width = document.documentElement.clientWidth;
             const height = document.documentElement.clientHeight;
             const targetTop = height * 0.1;
@@ -25,7 +25,7 @@ const modal = () => {
             } else {
                 modal.style.display = 'block';
             }
-        })
+        }
     })
 
     modal.addEventListener('click', e => {
