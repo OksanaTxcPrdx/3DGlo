@@ -1,7 +1,6 @@
 const animate = ({ duration, draw, timing }) => {
     let start = performance.now();
-
-    requestAnimationFrame(function animate(time) {
+    let animationId = requestAnimationFrame(function animate(time) {
         // timeFraction изменяется от 0 до 1
         let timeFraction = (time - start) / duration;
         if (timeFraction > 1) timeFraction = 1;
@@ -16,6 +15,9 @@ const animate = ({ duration, draw, timing }) => {
         }
 
     });
+
+    return animationId;
 }
+
 
 export { animate }
