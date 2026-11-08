@@ -25,7 +25,7 @@ const sliderConfigs = {
 timer('30 october 2026 15:55:20');
 menu();
 modal();
-calc();
+calc(100);
 formValid();
 tabs();
 slider(sliderConfigs);

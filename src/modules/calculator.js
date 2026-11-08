@@ -1,12 +1,78 @@
-const calculator = () => {
+const calculator = (price = 100) => {
     const calcBlock = document.querySelector('.calc-block');
-    const calcInputs = calcBlock.querySelectorAll('input.calc-item');
+    const calcType = document.querySelector('.calc-type');
+    const calcSquare = document.querySelector('.calc-square');
+    const calcCount = document.querySelector('.calc-count');
+    const calcDay = document.querySelector('.calc-day');
+    const total = document.querySelector('#total');
 
-    calcInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/\D/g, '');
-        })
+    let interval = null;
+    calcBlock.addEventListener('input', e => {
+        if (e.target.closest('input[type="text"]'))
+            e.target.value = e.target.value.replace(/\D/g, '');
     })
+
+    const drawTotal = (totalValue) => {
+
+        if (interval !== null) {
+            clearInterval(interval);
+            interval = null;
+        }
+
+        // let totalValue = Math.ceil(totalValue);
+        let totalText = Math.ceil(total.textContent);
+
+        console.log(totalText);
+        interval = setInterval(() => {
+            if (Math.ceil(total.textContent) == Math.ceil(totalValue)) {
+                clearInterval(interval);
+                total.textContent = totalValue.toFixed(2)
+            } else if (Math.ceil(total.textContent) < Math.ceil(totalValue)) {
+                total.textContent = +total.textContent + 1
+            } else if (+total.textContent > Math.ceil(totalValue)) {
+                total.textContent = +total.textContent - 1
+            }
+        }, 1)
+
+    }
+
+    const countCalc = () => {
+        const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
+        const calcSquareValue = calcSquare.value;
+
+        let totalValue = 0;
+        let calcCountValue = 1;
+        let calcDayValue = 1;
+
+        if (calcCount.value > 1) {
+            calcCountValue += +calcCount.value / 10
+        }
+
+        if (calcDay.value && calcDay.value < 5) {
+            calcDayValue = 2;
+        } else if (calcDay.value && calcDay.value < 10) {
+            calcDayValue = 1.5;
+        }
+
+        if (calcType.value && calcSquare.value) {
+            totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
+        } else {
+            totalValue = 0;
+        }
+        drawTotal(totalValue);
+        // total.textContent = totalValue;
+
+    }
+
+    calcBlock.addEventListener('input', e => {
+        if (e.target === calcType || e.target === calcSquare ||
+            e.target === calcCount || e.target === calcDay
+        ) {
+            countCalc();
+        }
+
+    })
+
 }
 
 export default calculator;
